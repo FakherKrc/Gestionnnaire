@@ -66,11 +66,11 @@ namespace Gestionnnaire.dal
         /// Suppression d'un personnel
         /// </summary>
         /// <param name="personnel">objet personnel à supprimer</param>
-        public static void DelPersonnel(Personnel personnel)
+        public static void DelPersonnel(int idpersonnel)
         {
             string req = "delete from personnel where idpersonnel = @idpersonnel;";
             Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@idpersonnel", personnel.IdPersonnel);
+            parameters.Add("@idpersonnel", idpersonnel);
             ConnexionBDD conn = ConnexionBDD.GetInstance(connectionString);
             conn.ReqUpdate(req, parameters);
         }
