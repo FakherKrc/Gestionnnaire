@@ -11,13 +11,13 @@ namespace Gestionnnaire.modele
         private int idpersonnel;
         private DateTime datedebut;
         private DateTime datefin;
-        private string idmotif;
+        private int idmotif;
         private string motif;
 
-        public int Idpersonnel { get => idpersonnel; }
+        public int IdPersonnel { get => idpersonnel; }
         public DateTime DateDebut { get => datedebut; }
         public DateTime DateFin { get => datefin; }
-        public string Idmotif { get => idmotif; }
+        public int IdMotif { get => idmotif; }
         public string Motif { get => motif; }
 
 
@@ -30,7 +30,7 @@ namespace Gestionnnaire.modele
         /// <param name="idmotif"></param>
         /// <param name="motif"></param>
 
-        public Absence(int idpersonnel, DateTime datedebut, DateTime datefin, string idmotif, string motif)
+        public Absence(int idpersonnel, DateTime datedebut, DateTime datefin, int idmotif, string motif)
         {
             this.idpersonnel = idpersonnel;
             this.datedebut = datedebut;
