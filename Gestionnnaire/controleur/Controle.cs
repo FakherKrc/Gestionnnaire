@@ -1,5 +1,6 @@
 ﻿using Gestionnnaire.dal;
 using Gestionnnaire.modele;
+using Gestionnnaire.vue;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,27 @@ namespace Gestionnnaire.controleur
 {
     public class Controle
     {
+
+        /// <summary>
+        /// fenêtre d'authentification
+        /// </summary>
+        private FrmAuthentification frmAuthentification;
+
+        private FrmAbsences frmAbsence;
+        /// <summary>
+        /// Ouverture de la fenêtre
+        /// </summary>
+        public Controle()
+        {
+            frmAuthentification = new FrmAuthentification(this);
+            frmAuthentification.ShowDialog();
+        }
+
+        public FrmAbsences()
+        {
+            frmAbsence = new FrmAbsences(this);
+            frmAbsence.ShowDialog();
+        }
         /// <summary>
         /// Demande de controler l'authentification 
         /// Si oui alors : ouverture de la fenêtre principale.
@@ -19,7 +41,16 @@ namespace Gestionnnaire.controleur
         /// <returns></returns>
         public bool ControleAuthentification(string login, string pwd)
         {
-            return AccesDonnees.ControleAuthentification(login, pwd);
+           if(AccesDonnees.ControleAuthentification(login, pwd))
+           {
+                frmAuthentification.Hide();
+                (new FrmPersonnel(this)).ShowDialog();
+                return true;
+           }
+           else
+           {
+                return false;
+           }
         }
          public List<Personnel> GetLesPersonnels()
         {

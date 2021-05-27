@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gestionnnaire.controleur;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,12 @@ namespace Gestionnnaire.vue
 {
     public partial class FrmAbsences : Form
     {
-        public FrmAbsences()
+        private Controle controle;
+        public FrmAbsences(Controle controle)
         {
             InitializeComponent();
         }
+
+
     }
 }

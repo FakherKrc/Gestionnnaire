@@ -76,6 +76,7 @@ namespace Gestionnnaire.vue
             this.btnSeconnecter.TabIndex = 5;
             this.btnSeconnecter.Text = "Se connecter";
             this.btnSeconnecter.UseVisualStyleBackColor = true;
+            this.btnSeconnecter.Click += new System.EventHandler(this.btnSeconnecter_Click);
             // 
             // FrmAuthentification
             // 

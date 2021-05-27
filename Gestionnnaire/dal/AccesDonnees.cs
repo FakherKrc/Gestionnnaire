@@ -23,7 +23,7 @@ namespace Gestionnnaire.dal
         public static Boolean ControleAuthentification(string login, string pwd)
         {
             string req = "select * from responsable";
-            req += "where login=@login and pwd=SHA2(@pwd, 256);";
+            req += " where login=@login and pwd=SHA2(@pwd, 256);";
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("@login", login);
             parameters.Add("@pwd", pwd);
@@ -50,7 +50,7 @@ namespace Gestionnnaire.dal
             List<Personnel> lesPersonnels = new List<Personnel>();
 
 
-            string req = "SELECT idpersonnel, personnel.nom as nom, prenom, tel, mail, idservice, service.nom as service";
+            string req = "SELECT idpersonnel, personnel.nom as nom, prenom, tel, mail, idservice, service.nom as service ";
             req += "FROM personnel JOIN service using(idservice);";
             ConnexionBDD curs = ConnexionBDD.GetInstance(connectionString);
             curs.ReqSelect(req, null);
@@ -99,7 +99,7 @@ namespace Gestionnnaire.dal
         /// <param name="personnel"></param>
         public static void UpdatePersonnel(Personnel personnel)
         {
-            string req = "update personnel set nom = @nom, prenom = @prenom, tel = @tel, mail = @mail, idservice = @idservice";
+            string req = "update personnel set nom = @nom, prenom = @prenom, tel = @tel, mail = @mail, idservice = @idservice ";
             req += "where idpersonnel = @idpersonnel;";
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("@idpersonnel", personnel.IdPersonnel);
@@ -140,7 +140,7 @@ namespace Gestionnnaire.dal
         public static List<Absence> GetLesAbsences(int idpersonnel)
         {
             List<Absence> lesAbsences = new List<Absence>();
-            string req = "SELECT  datedebut , datefin, idmotif, motif.nom as nom";
+            string req = "SELECT  datedebut , datefin, idmotif, motif.nom as nom ";
             req += "FROM absence JOIN motif using(idservice);";
             ConnexionBDD curs = ConnexionBDD.GetInstance(connectionString);
             curs.ReqSelect(req, null);
@@ -191,7 +191,7 @@ namespace Gestionnnaire.dal
         /// <param name="absence"></param>
         public static void UpdateAbsence(DateTime datedebutOld, Absence absence)
         {
-            string req = "update absence set idpersonnel = @idpersonnel, datedebut = @datedebut, datefin = @datefin, idmotif = @idmotif";
+            string req = "update absence set idpersonnel = @idpersonnel, datedebut = @datedebut, datefin = @datefin, idmotif = @idmotif ";
             req += "where idpersonnel = @idpersonnel and datedebut = @datedebutold";
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("@idpersonnel", absence.IdPersonnel);

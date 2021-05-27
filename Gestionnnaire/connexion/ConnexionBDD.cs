@@ -137,7 +137,7 @@ namespace Gestionnnaire.connexion
         public object Field(string nameField)
         {
             if (reader is null)
-            {
+            { 
                 return null;
             }
             try
