@@ -40,6 +40,7 @@ namespace Gestionnnaire.vue
             // 
             this.txtMdp.Location = new System.Drawing.Point(141, 82);
             this.txtMdp.Name = "txtMdp";
+            this.txtMdp.PasswordChar = '*';
             this.txtMdp.Size = new System.Drawing.Size(154, 22);
             this.txtMdp.TabIndex = 9;
             // 

@@ -19,9 +19,10 @@ namespace Gestionnnaire.vue
             this.controle = controle;
             InitializeComponent();
         }
+        
         /// <summary>
         /// Controle l'authentification au clique de la souris 
-        /// Si champs incorrect : affiche erreur. 
+        /// Si champs incorrect : affiche erreur. P0
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -33,6 +34,7 @@ namespace Gestionnnaire.vue
                 {
                     MessageBox.Show("Authentification incorrecte ou vous n'êtes pas admin", "Alerte");
                     txtIdentifiant.Text = "";
+
                     txtMdp.Text = "";
                     txtIdentifiant.Focus();
                 }

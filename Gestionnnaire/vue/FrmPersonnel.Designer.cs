@@ -59,6 +59,7 @@ namespace Gestionnnaire.vue
             this.btnGererAbs.TabIndex = 12;
             this.btnGererAbs.Text = "Gerer les absences ";
             this.btnGererAbs.UseVisualStyleBackColor = true;
+            this.btnGererAbs.Click += new System.EventHandler(this.btnGererAbs_Click);
             // 
             // grbPersonnel
             // 
@@ -228,6 +229,7 @@ namespace Gestionnnaire.vue
             this.btnAjouter.TabIndex = 8;
             this.btnAjouter.Text = "Ajouter";
             this.btnAjouter.UseVisualStyleBackColor = true;
+            this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click);
             // 
             // dgvPersonnels
             // 

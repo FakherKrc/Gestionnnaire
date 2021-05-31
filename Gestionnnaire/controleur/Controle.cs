@@ -23,15 +23,16 @@ namespace Gestionnnaire.controleur
         /// </summary>
         public Controle()
         {
+
             frmAuthentification = new FrmAuthentification(this);
             frmAuthentification.ShowDialog();
         }
 
-        public FrmAbsences()
+       public void FrmAbsences(Personnel personnel)
         {
-            frmAbsence = new FrmAbsences(this);
-            frmAbsence.ShowDialog();
-        }
+          frmAbsence = new FrmAbsences(this, personnel);
+          frmAbsence.ShowDialog();
+       }
         /// <summary>
         /// Demande de controler l'authentification 
         /// Si oui alors : ouverture de la fenêtre principale.
@@ -41,18 +42,18 @@ namespace Gestionnnaire.controleur
         /// <returns></returns>
         public bool ControleAuthentification(string login, string pwd)
         {
-           if(AccesDonnees.ControleAuthentification(login, pwd))
-           {
+            if (AccesDonnees.ControleAuthentification(login, pwd))
+            {
                 frmAuthentification.Hide();
                 (new FrmPersonnel(this)).ShowDialog();
                 return true;
-           }
-           else
-           {
+            }
+            else
+            {
                 return false;
-           }
+            }
         }
-         public List<Personnel> GetLesPersonnels()
+        public List<Personnel> GetLesPersonnels()
         {
             return AccesDonnees.GetLesPersonnels();
         }
@@ -104,7 +105,7 @@ namespace Gestionnnaire.controleur
         public List<Absence> GetLesAbsences(int idpersonnel)
         {
             return AccesDonnees.GetLesAbsences(idpersonnel);
-            
+
         }
         /// <summary>
         /// Demande de supprimer une absence.
@@ -136,6 +137,12 @@ namespace Gestionnnaire.controleur
             AccesDonnees.UpdateAbsence(debut, absence);
         }
 
+        public List<Motif> GetLesMotifs()
+        {
+            return AccesDonnees.GetLesMotifs();
+
+
+        }
 
 
 

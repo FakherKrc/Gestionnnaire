@@ -140,10 +140,13 @@ namespace Gestionnnaire.dal
         public static List<Absence> GetLesAbsences(int idpersonnel)
         {
             List<Absence> lesAbsences = new List<Absence>();
-            string req = "SELECT  datedebut , datefin, idmotif, motif.nom as nom ";
-            req += "FROM absence JOIN motif using(idservice);";
+            string req = "SELECT datedebut , datefin, idmotif, motif.libelle as motif ";
+            req += "FROM absence JOIN motif using(idmotif) ";
+            req += " WHERE idpersonnel = @idpersonnel;";
             ConnexionBDD curs = ConnexionBDD.GetInstance(connectionString);
-            curs.ReqSelect(req, null);
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@idpersonnel", idpersonnel);
+            curs.ReqSelect(req, parameters);
             while (curs.Read())
             {
                 Absence absence = new Absence(idpersonnel, (DateTime)curs.Field("datedebut"), (DateTime)curs.Field("datefin"), (int)curs.Field("idmotif"),(string)curs.Field("motif"));
@@ -203,7 +206,24 @@ namespace Gestionnnaire.dal
             conn.ReqUpdate(req, parameters);
         }
 
-
+        /// <summary>
+        /// Récupère et retourne les motifs provenant de la BDD
+        /// </summary>
+        /// <returns>liste des motifs</returns>
+        public static List<Motif> GetLesMotifs()
+        {
+            List<Motif> lesMotifs = new List<Motif>();
+            string req = "SELECT * FROM motif ORDER by libelle;";
+            ConnexionBDD curs = ConnexionBDD.GetInstance(connectionString);
+            curs.ReqSelect(req, null);
+            while (curs.Read())
+            {
+                Motif motif = new Motif((int)curs.Field("idmotif"), (string)curs.Field("libelle"));
+                lesMotifs.Add(motif);
+            }
+            curs.Close();
+            return lesMotifs;
+        }
 
 
 

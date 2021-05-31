@@ -35,6 +35,7 @@ namespace Gestionnnaire.vue
         {
             RemplirListePersonnel();
             RemplirListeService();
+            grbPersonnel.Enabled = false;
         }
         /// <summary>
         /// Remplis la DataGriedView par la liste des personnels. 
@@ -110,6 +111,9 @@ namespace Gestionnnaire.vue
                 grbPersonnel.Enabled = true;
                 enCoursDeModif = false;
                 grbPersonnel.Text = "ajouter un développeur";
+                btnAjouter.Enabled = true;
+                btnModifier.Enabled = true;
+                grbPersonnel.Enabled = false;
             }
         }
 
@@ -142,6 +146,9 @@ namespace Gestionnnaire.vue
                 }
                 RemplirListePersonnel();
                 ViderPersonnel();
+                btnAjouter.Enabled = true;
+                btnModifier.Enabled = true;
+                grbPersonnel.Enabled = false;
             }
             else
             {
@@ -160,6 +167,7 @@ namespace Gestionnnaire.vue
             {
                 enCoursDeModif = true;
                 grbPersonnel.Enabled = true;
+                btnAjouter.Enabled = false;
                 grbPersonnel.Text = "modifier un développeur";
                 Personnel personnel = (Personnel)bdgPersonnels.List[bdgPersonnels.Position];
                 txtNom.Text = personnel.Nom;
@@ -174,21 +182,18 @@ namespace Gestionnnaire.vue
             }
         }
 
+        private void btnGererAbs_Click(object sender, EventArgs e)
+        {
+            if(dgvPersonnels.SelectedRows.Count > 0)
+            {
+                controle.FrmAbsences((Personnel)bdgPersonnels.List[bdgPersonnels.Position]);
+            }
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        private void btnAjouter_Click(object sender, EventArgs e)
+        {
+            grbPersonnel.Enabled = true;
+            btnModifier.Enabled = false;
+        }
     }
 }
