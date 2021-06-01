@@ -88,6 +88,7 @@ namespace Gestionnnaire.connexion
         /// Exécute une requête type "select" et valorise le curseur
         /// </summary>
         /// <param name="stringQuery">requête select</param>
+        /// <param name="parameters"></param>
         public void ReqSelect(string stringQuery, Dictionary<string, object> parameters)
         {
             try

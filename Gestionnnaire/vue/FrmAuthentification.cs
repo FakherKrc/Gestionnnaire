@@ -14,6 +14,10 @@ namespace Gestionnnaire.vue
     public partial class FrmAuthentification : Form
     {
         private Controle controle;
+        /// <summary>
+        /// Constructeur de la Frame Authentification
+        /// </summary>
+        /// <param name="controle"></param>
         public FrmAuthentification(Controle controle)
         {
             this.controle = controle;
@@ -30,7 +34,7 @@ namespace Gestionnnaire.vue
         {
             if (!txtIdentifiant.Text.Equals("") && !txtMdp.Text.Equals(""))
             {
-                if (controle.ControleAuthentification(txtIdentifiant.Text,  txtMdp.Text))
+                if (!controle.ControleAuthentification(txtIdentifiant.Text,  txtMdp.Text))
                 {
                     MessageBox.Show("Authentification incorrecte ou vous n'êtes pas admin", "Alerte");
                     txtIdentifiant.Text = "";

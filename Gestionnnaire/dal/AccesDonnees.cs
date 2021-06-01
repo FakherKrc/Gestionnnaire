@@ -65,7 +65,7 @@ namespace Gestionnnaire.dal
         /// <summary>
         /// Suppression d'un personnel
         /// </summary>
-        /// <param name="personnel">objet personnel à supprimer</param>
+        /// <param name="idpersonnel">objet personnel à supprimer</param>
         public static void DelPersonnel(int idpersonnel)
         {
             string req = "delete from personnel where idpersonnel = @idpersonnel;";
@@ -149,7 +149,7 @@ namespace Gestionnnaire.dal
             curs.ReqSelect(req, parameters);
             while (curs.Read())
             {
-                Absence absence = new Absence(idpersonnel, (DateTime)curs.Field("datedebut"), (DateTime)curs.Field("datefin"), (int)curs.Field("idmotif"),(string)curs.Field("motif"));
+                Absence absence = new Absence(idpersonnel, (DateTime)curs.Field("datedebut"), (DateTime)curs.Field("datefin"), (int)curs.Field("idmotif"), (string)curs.Field("motif"));
                 lesAbsences.Add(absence);
             }
             curs.Close(); 
@@ -158,7 +158,7 @@ namespace Gestionnnaire.dal
         /// <summary>
         /// Suppression d'une absence
         /// </summary>
-        /// <param name="absence">objet personnel à supprimer</param>
+        /// <param name="idpersonnel"></param>
         /// <param name="datedebut"></param>
         public static void DelAbsence(int idpersonnel, DateTime datedebut)
         {
@@ -180,7 +180,7 @@ namespace Gestionnnaire.dal
             req += "VALUES (@idpersonnel, @datedebut, @datefin, @idmotif);";
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("@idpersonnel", absence.IdPersonnel);
-            parameters.Add("@datdebut", absence.DateDebut);
+            parameters.Add("@datedebut", absence.DateDebut);
             parameters.Add("@datefin", absence.DateFin);
             parameters.Add("@idmotif", absence.IdMotif);
             ConnexionBDD conn = ConnexionBDD.GetInstance(connectionString);
@@ -195,10 +195,10 @@ namespace Gestionnnaire.dal
         public static void UpdateAbsence(DateTime datedebutOld, Absence absence)
         {
             string req = "update absence set idpersonnel = @idpersonnel, datedebut = @datedebut, datefin = @datefin, idmotif = @idmotif ";
-            req += "where idpersonnel = @idpersonnel and datedebut = @datedebutold";
+            req += "where idpersonnel = @idpersonnel and datedebut = @datedebutold;";
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("@idpersonnel", absence.IdPersonnel);
-            parameters.Add("@datdebut", absence.DateDebut); 
+            parameters.Add("@datedebut", absence.DateDebut); 
             parameters.Add("@datefin", absence.DateFin);
             parameters.Add("@idmotif", absence.IdMotif);
             parameters.Add("@datedebutold", datedebutOld);

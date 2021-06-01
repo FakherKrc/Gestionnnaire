@@ -55,6 +55,7 @@ namespace Gestionnnaire.vue
             this.btnAjouterAbsences.TabIndex = 13;
             this.btnAjouterAbsences.Text = "Ajouter";
             this.btnAjouterAbsences.UseVisualStyleBackColor = true;
+            this.btnAjouterAbsences.Click += new System.EventHandler(this.btnAjouterAbsences_Click);
             // 
             // btnSupprimer
             // 
@@ -65,6 +66,7 @@ namespace Gestionnnaire.vue
             this.btnSupprimer.TabIndex = 14;
             this.btnSupprimer.Text = "Supprimer";
             this.btnSupprimer.UseVisualStyleBackColor = true;
+            this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click_1);
             // 
             // btnModifAbsences
             // 
@@ -75,6 +77,7 @@ namespace Gestionnnaire.vue
             this.btnModifAbsences.TabIndex = 15;
             this.btnModifAbsences.Text = "Modifier";
             this.btnModifAbsences.UseVisualStyleBackColor = true;
+            this.btnModifAbsences.Click += new System.EventHandler(this.btnModifAbsences_Click);
             // 
             // dgvAbsences
             // 
@@ -156,6 +159,7 @@ namespace Gestionnnaire.vue
             this.btnAnnulAbs.TabIndex = 4;
             this.btnAnnulAbs.Text = "annuler";
             this.btnAnnulAbs.UseVisualStyleBackColor = true;
+            this.btnAnnulAbs.Click += new System.EventHandler(this.btnAnnulAbs_Click);
             // 
             // btnEnregAbsence
             // 
@@ -166,6 +170,7 @@ namespace Gestionnnaire.vue
             this.btnEnregAbsence.TabIndex = 3;
             this.btnEnregAbsence.Text = "enregistrer";
             this.btnEnregAbsence.UseVisualStyleBackColor = true;
+            this.btnEnregAbsence.Click += new System.EventHandler(this.btnEnregAbsence_Click);
             // 
             // label6
             // 

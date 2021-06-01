@@ -17,6 +17,9 @@ namespace Gestionnnaire.controleur
         /// </summary>
         private FrmAuthentification frmAuthentification;
 
+        /// <summary>
+        /// Fênetre de gestion des absences
+        /// </summary>
         private FrmAbsences frmAbsence;
         /// <summary>
         /// Ouverture de la fenêtre
@@ -28,6 +31,10 @@ namespace Gestionnnaire.controleur
             frmAuthentification.ShowDialog();
         }
 
+        /// <summary>
+        /// Demande l'instanciation la FrmAbsences
+        /// </summary>
+        /// <param name="personnel"></param>
        public void FrmAbsences(Personnel personnel)
         {
           frmAbsence = new FrmAbsences(this, personnel);
@@ -53,6 +60,10 @@ namespace Gestionnnaire.controleur
                 return false;
             }
         }
+        /// <summary>
+        /// Demande la liste des personnels
+        /// </summary>
+        /// <returns></returns>
         public List<Personnel> GetLesPersonnels()
         {
             return AccesDonnees.GetLesPersonnels();
@@ -137,6 +148,10 @@ namespace Gestionnnaire.controleur
             AccesDonnees.UpdateAbsence(debut, absence);
         }
 
+        /// <summary>
+        /// Demande la recuperation de la liste des motifs
+        /// </summary>
+        /// <returns></returns>
         public List<Motif> GetLesMotifs()
         {
             return AccesDonnees.GetLesMotifs();

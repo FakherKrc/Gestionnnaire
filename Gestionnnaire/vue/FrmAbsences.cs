@@ -16,6 +16,12 @@ namespace Gestionnnaire.vue
     {
         private Controle controle;
         private Personnel personnel;
+
+        /// <summary>
+        /// Construit la Frame Absence et recupere l'instance de controle.
+        /// </summary>
+        /// <param name="controle"></param>
+        /// <param name="personnel"></param>
         public FrmAbsences(Controle controle, Personnel personnel)
         {
             this.personnel = personnel;
@@ -37,12 +43,11 @@ namespace Gestionnnaire.vue
         {
             RemplirListeAbsences();
             RemplirListeMotifs();
+            grbAbsence.Enabled = false;
         }
         /// <summary>
         /// Remplit la DataGriedView avec les absences.
         /// </summary>
-        /// <param name="idpersonnel"></param>
-
         public void RemplirListeAbsences()
         {
             List<Absence> lesAbsences = controle.GetLesAbsences(personnel.IdPersonnel);
@@ -80,15 +85,15 @@ namespace Gestionnnaire.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSupprimer_Click(object sender, System.EventArgs e)
+        private void btnSupprimer_Click_1(object sender, EventArgs e)
         {
             if (dgvAbsences.SelectedRows.Count > 0)
             {
                 Absence absence = (Absence)bdgAbsences.List[bdgAbsences.Position];
-                if (MessageBox.Show("Voulez-vous vraiment supprimer ", "Confirmation de suppression", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Voulez-vous vraiment supprimer une absence ?  ", "Confirmation de suppression", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     controle.DelAbsence(absence.IdPersonnel, absence.DateDebut);
-                    RemplirListeAbsences();
+                    RemplirListeAbsences();                 
                 }
             }
             else
@@ -96,19 +101,30 @@ namespace Gestionnnaire.vue
                 MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
             }
         }
+
+        /// <summary>
+        /// Annule l'enregistrement d'une absence
+        /// </summary>
+        private void Annuler()
+        {
+            ViderAbsence();
+            enCoursDeModif = false;
+            grbAbsence.Text = "ajouter une absence";
+            grbAbsence.Enabled = false;
+            btnAjouterAbsences.Enabled = true;
+            btnModifAbsences.Enabled = true;
+        }
         /// <summary>
         /// Annule une absence
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
-        private void btnAnnulerPersonnel_Click(object sender, EventArgs e)
+        private void btnAnnulAbs_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Voulez-vous vraiment annuler ?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                ViderAbsence();
-                enCoursDeModif = false;
-                grbAbsence.Text = "ajouter une absence";
+                Annuler();
             }
         }
 
@@ -117,7 +133,8 @@ namespace Gestionnnaire.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnEnregPersonnel_Click(object sender, EventArgs e)
+
+        private void btnEnregAbsence_Click(object sender, EventArgs e)
         {
             if (cboMotif.SelectedIndex != -1)
             {
@@ -127,17 +144,39 @@ namespace Gestionnnaire.vue
                     Absence absence = new Absence(personnel.IdPersonnel, dtpDebut.Value, dtpFin.Value, motif.Idmotif, motif.Nom);
                     if (enCoursDeModif)
                     {
-                        controle.UpdateAbsence(dtpDebut.Value, absence);
-                        enCoursDeModif = false;
-                        grbAbsence.Text = "ajouter un personnel";
-                        dtpDebut.Enabled = true;
+                        if ((MessageBox.Show("Voulez-vous vraiment Enregistrer la modification d'un personnel ?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes))
+                        {
+                            controle.UpdateAbsence(dtpDebut.Value, absence);
+                            enCoursDeModif = false;
+                            grbAbsence.Text = "ajouter un personnel";
+                            dtpDebut.Enabled = true;
+                        }
+                        else
+                        {
+                            Annuler();
+                        }
+
                     }
                     else
                     {
-                        controle.AddAbsence(absence);
+                        if (MessageBox.Show("Voulez-vous vraiment Enregistrer l'ajout d'un nouveau personnel ?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            controle.AddAbsence(absence);
+                        }
+                        else
+                        {
+                            Annuler();
+                        }
                     }
                     RemplirListeAbsences();
                     ViderAbsence();
+                    grbAbsence.Enabled = false;
+                    btnModifAbsences.Enabled = true;
+                    btnAjouterAbsences.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Les dates sont incohérentes", "Information");
                 }
             }
             else
@@ -145,13 +184,12 @@ namespace Gestionnnaire.vue
                 MessageBox.Show("Tous les champs doivent être remplis.", "Information");
             }
         }
-
         /// <summary>
-        /// Modifie un personnel
+        /// Modifie une absence
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnModifier_Click(object sender, EventArgs e)
+        private void btnModifAbsences_Click(object sender, EventArgs e)
         {
             if (dgvAbsences.SelectedRows.Count > 0)
             {
@@ -163,12 +201,19 @@ namespace Gestionnnaire.vue
                 dtpDebut.Value = absence.DateDebut;
                 dtpFin.Value = absence.DateFin;
                 cboMotif.SelectedIndex = cboMotif.FindStringExact(absence.Motif);
+                btnAjouterAbsences.Enabled = false;
             }
             else
             {
                 MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
             }
 
+        }
+
+        private void btnAjouterAbsences_Click(object sender, EventArgs e)
+        {
+            btnModifAbsences.Enabled = false;
+            grbAbsence.Enabled = true;
         }
 
     }

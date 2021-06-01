@@ -20,6 +20,11 @@ namespace Gestionnnaire.vue
         private BindingSource bdgMotifs = new BindingSource();
         private BindingSource bdgServices = new BindingSource();
         bool enCoursDeModif;
+
+        /// <summary>
+        /// Construit la Frame Personnel et recupere l'instance de controle
+        /// </summary>
+        /// <param name="controle"></param>
         public FrmPersonnel(Controle controle)
         {
             this.controle = controle;
@@ -97,6 +102,23 @@ namespace Gestionnnaire.vue
                 MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
             }
         }
+
+        /// <summary>
+        /// Annule l'enregistrement d'un personnel
+        /// </summary>
+
+        private void Annuler()
+        {
+            ViderPersonnel();
+            grbPersonnel.Enabled = true;
+            enCoursDeModif = false;
+            grbPersonnel.Text = "ajouter un développeur";
+            btnAjouter.Enabled = true;
+            btnModifier.Enabled = true;
+            grbPersonnel.Enabled = false;
+        }
+    
+
         /// <summary>
         /// Annule un personnel
         /// </summary>
@@ -107,13 +129,7 @@ namespace Gestionnnaire.vue
         {
             if (MessageBox.Show("Voulez-vous vraiment annuler ?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                ViderPersonnel();
-                grbPersonnel.Enabled = true;
-                enCoursDeModif = false;
-                grbPersonnel.Text = "ajouter un développeur";
-                btnAjouter.Enabled = true;
-                btnModifier.Enabled = true;
-                grbPersonnel.Enabled = false;
+            Annuler();
             }
         }
 
@@ -135,14 +151,29 @@ namespace Gestionnnaire.vue
                 Personnel personnel = new Personnel(idpersonnel, txtNom.Text, txtPrenom.Text, txtTel.Text, txtMail.Text, service.Idservice, service.Nom);
                 if (enCoursDeModif)
                 {
-                    controle.UpdatePersonnel(personnel);
-                    enCoursDeModif = false;
-                    grbPersonnel.Text = "ajouter un personnel";
+                    if (MessageBox.Show("Voulez-vous vraiment Enregistrer la modification d'un personnel ?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        controle.UpdatePersonnel(personnel);
+                        enCoursDeModif = false;
+                        grbPersonnel.Text = "ajouter un personnel";
+                    }
+                    else
+                    {
+                        Annuler();
+                    }
 
                 }
                 else
                 {
-                    controle.AddPersonnel(personnel);
+                    if(MessageBox.Show("Voulez-vous vraiment Enregistrer l'ajout d'un personnel?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        controle.AddPersonnel(personnel);
+                    }
+                    else
+                    {
+                        Annuler();
+                    }
+                    
                 }
                 RemplirListePersonnel();
                 ViderPersonnel();
@@ -187,6 +218,10 @@ namespace Gestionnnaire.vue
             if(dgvPersonnels.SelectedRows.Count > 0)
             {
                 controle.FrmAbsences((Personnel)bdgPersonnels.List[bdgPersonnels.Position]);
+            }
+            else
+            {
+                MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
             }
         }
 
