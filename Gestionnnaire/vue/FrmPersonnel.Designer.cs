@@ -30,10 +30,10 @@ namespace Gestionnnaire.vue
         private void InitializeComponent()
         {
             this.btnGererAbs = new System.Windows.Forms.Button();
-            this.grbDeveloppeur = new System.Windows.Forms.GroupBox();
-            this.btnAnnulerResponsable = new System.Windows.Forms.Button();
-            this.btnEnregResponsable = new System.Windows.Forms.Button();
-            this.cboProfil = new System.Windows.Forms.ComboBox();
+            this.grbPersonnel = new System.Windows.Forms.GroupBox();
+            this.btnAnnulerPersonnel = new System.Windows.Forms.Button();
+            this.btnEnregPersonnel = new System.Windows.Forms.Button();
+            this.cboService = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,9 +46,9 @@ namespace Gestionnnaire.vue
             this.btnSupprimer = new System.Windows.Forms.Button();
             this.btnModifier = new System.Windows.Forms.Button();
             this.btnAjouter = new System.Windows.Forms.Button();
-            this.dgvResponsable = new System.Windows.Forms.DataGridView();
-            this.grbDeveloppeur.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvResponsable)).BeginInit();
+            this.dgvPersonnels = new System.Windows.Forms.DataGridView();
+            this.grbPersonnel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPersonnels)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGererAbs
@@ -59,58 +59,61 @@ namespace Gestionnnaire.vue
             this.btnGererAbs.TabIndex = 12;
             this.btnGererAbs.Text = "Gerer les absences ";
             this.btnGererAbs.UseVisualStyleBackColor = true;
+            this.btnGererAbs.Click += new System.EventHandler(this.btnGererAbs_Click);
             // 
-            // grbDeveloppeur
+            // grbPersonnel
             // 
-            this.grbDeveloppeur.Controls.Add(this.btnAnnulerResponsable);
-            this.grbDeveloppeur.Controls.Add(this.btnEnregResponsable);
-            this.grbDeveloppeur.Controls.Add(this.cboProfil);
-            this.grbDeveloppeur.Controls.Add(this.label5);
-            this.grbDeveloppeur.Controls.Add(this.label4);
-            this.grbDeveloppeur.Controls.Add(this.label3);
-            this.grbDeveloppeur.Controls.Add(this.label2);
-            this.grbDeveloppeur.Controls.Add(this.txtMail);
-            this.grbDeveloppeur.Controls.Add(this.txtTel);
-            this.grbDeveloppeur.Controls.Add(this.txtPrenom);
-            this.grbDeveloppeur.Controls.Add(this.label1);
-            this.grbDeveloppeur.Controls.Add(this.txtNom);
-            this.grbDeveloppeur.Location = new System.Drawing.Point(33, 294);
-            this.grbDeveloppeur.Margin = new System.Windows.Forms.Padding(4);
-            this.grbDeveloppeur.Name = "grbDeveloppeur";
-            this.grbDeveloppeur.Padding = new System.Windows.Forms.Padding(4);
-            this.grbDeveloppeur.Size = new System.Drawing.Size(807, 159);
-            this.grbDeveloppeur.TabIndex = 11;
-            this.grbDeveloppeur.TabStop = false;
-            this.grbDeveloppeur.Text = "Ajouter un personnel";
+            this.grbPersonnel.Controls.Add(this.btnAnnulerPersonnel);
+            this.grbPersonnel.Controls.Add(this.btnEnregPersonnel);
+            this.grbPersonnel.Controls.Add(this.cboService);
+            this.grbPersonnel.Controls.Add(this.label5);
+            this.grbPersonnel.Controls.Add(this.label4);
+            this.grbPersonnel.Controls.Add(this.label3);
+            this.grbPersonnel.Controls.Add(this.label2);
+            this.grbPersonnel.Controls.Add(this.txtMail);
+            this.grbPersonnel.Controls.Add(this.txtTel);
+            this.grbPersonnel.Controls.Add(this.txtPrenom);
+            this.grbPersonnel.Controls.Add(this.label1);
+            this.grbPersonnel.Controls.Add(this.txtNom);
+            this.grbPersonnel.Location = new System.Drawing.Point(33, 294);
+            this.grbPersonnel.Margin = new System.Windows.Forms.Padding(4);
+            this.grbPersonnel.Name = "grbPersonnel";
+            this.grbPersonnel.Padding = new System.Windows.Forms.Padding(4);
+            this.grbPersonnel.Size = new System.Drawing.Size(807, 159);
+            this.grbPersonnel.TabIndex = 11;
+            this.grbPersonnel.TabStop = false;
+            this.grbPersonnel.Text = "Ajouter un personnel";
             // 
-            // btnAnnulerResponsable
+            // btnAnnulerPersonnel
             // 
-            this.btnAnnulerResponsable.Location = new System.Drawing.Point(116, 121);
-            this.btnAnnulerResponsable.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAnnulerResponsable.Name = "btnAnnulerResponsable";
-            this.btnAnnulerResponsable.Size = new System.Drawing.Size(100, 28);
-            this.btnAnnulerResponsable.TabIndex = 10;
-            this.btnAnnulerResponsable.Text = "annuler";
-            this.btnAnnulerResponsable.UseVisualStyleBackColor = true;
+            this.btnAnnulerPersonnel.Location = new System.Drawing.Point(116, 121);
+            this.btnAnnulerPersonnel.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAnnulerPersonnel.Name = "btnAnnulerPersonnel";
+            this.btnAnnulerPersonnel.Size = new System.Drawing.Size(100, 28);
+            this.btnAnnulerPersonnel.TabIndex = 10;
+            this.btnAnnulerPersonnel.Text = "annuler";
+            this.btnAnnulerPersonnel.UseVisualStyleBackColor = true;
+            this.btnAnnulerPersonnel.Click += new System.EventHandler(this.btnAnnulerPersonnel_Click);
             // 
-            // btnEnregResponsable
+            // btnEnregPersonnel
             // 
-            this.btnEnregResponsable.Location = new System.Drawing.Point(8, 121);
-            this.btnEnregResponsable.Margin = new System.Windows.Forms.Padding(4);
-            this.btnEnregResponsable.Name = "btnEnregResponsable";
-            this.btnEnregResponsable.Size = new System.Drawing.Size(100, 28);
-            this.btnEnregResponsable.TabIndex = 9;
-            this.btnEnregResponsable.Text = "enregistrer";
-            this.btnEnregResponsable.UseVisualStyleBackColor = true;
+            this.btnEnregPersonnel.Location = new System.Drawing.Point(8, 121);
+            this.btnEnregPersonnel.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEnregPersonnel.Name = "btnEnregPersonnel";
+            this.btnEnregPersonnel.Size = new System.Drawing.Size(100, 28);
+            this.btnEnregPersonnel.TabIndex = 9;
+            this.btnEnregPersonnel.Text = "enregistrer";
+            this.btnEnregPersonnel.UseVisualStyleBackColor = true;
+            this.btnEnregPersonnel.Click += new System.EventHandler(this.btnEnregPersonnel_Click);
             // 
-            // cboProfil
+            // cboService
             // 
-            this.cboProfil.FormattingEnabled = true;
-            this.cboProfil.Location = new System.Drawing.Point(472, 87);
-            this.cboProfil.Margin = new System.Windows.Forms.Padding(4);
-            this.cboProfil.Name = "cboProfil";
-            this.cboProfil.Size = new System.Drawing.Size(213, 24);
-            this.cboProfil.TabIndex = 8;
+            this.cboService.FormattingEnabled = true;
+            this.cboService.Location = new System.Drawing.Point(472, 87);
+            this.cboService.Margin = new System.Windows.Forms.Padding(4);
+            this.cboService.Name = "cboService";
+            this.cboService.Size = new System.Drawing.Size(213, 24);
+            this.cboService.TabIndex = 8;
             // 
             // label5
             // 
@@ -206,6 +209,7 @@ namespace Gestionnnaire.vue
             this.btnSupprimer.TabIndex = 10;
             this.btnSupprimer.Text = "Supprimer";
             this.btnSupprimer.UseVisualStyleBackColor = true;
+            this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click);
             // 
             // btnModifier
             // 
@@ -215,6 +219,7 @@ namespace Gestionnnaire.vue
             this.btnModifier.TabIndex = 9;
             this.btnModifier.Text = "Modifier";
             this.btnModifier.UseVisualStyleBackColor = true;
+            this.btnModifier.Click += new System.EventHandler(this.btnModifier_Click);
             // 
             // btnAjouter
             // 
@@ -224,16 +229,17 @@ namespace Gestionnnaire.vue
             this.btnAjouter.TabIndex = 8;
             this.btnAjouter.Text = "Ajouter";
             this.btnAjouter.UseVisualStyleBackColor = true;
+            this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click);
             // 
-            // dgvResponsable
+            // dgvPersonnels
             // 
-            this.dgvResponsable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvResponsable.Location = new System.Drawing.Point(33, 25);
-            this.dgvResponsable.Name = "dgvResponsable";
-            this.dgvResponsable.RowHeadersWidth = 51;
-            this.dgvResponsable.RowTemplate.Height = 24;
-            this.dgvResponsable.Size = new System.Drawing.Size(797, 211);
-            this.dgvResponsable.TabIndex = 7;
+            this.dgvPersonnels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPersonnels.Location = new System.Drawing.Point(33, 25);
+            this.dgvPersonnels.Name = "dgvPersonnels";
+            this.dgvPersonnels.RowHeadersWidth = 51;
+            this.dgvPersonnels.RowTemplate.Height = 24;
+            this.dgvPersonnels.Size = new System.Drawing.Size(797, 211);
+            this.dgvPersonnels.TabIndex = 7;
             // 
             // FrmPersonnel
             // 
@@ -241,16 +247,16 @@ namespace Gestionnnaire.vue
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(879, 480);
             this.Controls.Add(this.btnGererAbs);
-            this.Controls.Add(this.grbDeveloppeur);
+            this.Controls.Add(this.grbPersonnel);
             this.Controls.Add(this.btnSupprimer);
             this.Controls.Add(this.btnModifier);
             this.Controls.Add(this.btnAjouter);
-            this.Controls.Add(this.dgvResponsable);
+            this.Controls.Add(this.dgvPersonnels);
             this.Name = "FrmPersonnel";
             this.Text = "Personnel";
-            this.grbDeveloppeur.ResumeLayout(false);
-            this.grbDeveloppeur.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvResponsable)).EndInit();
+            this.grbPersonnel.ResumeLayout(false);
+            this.grbPersonnel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPersonnels)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -258,10 +264,10 @@ namespace Gestionnnaire.vue
         #endregion
 
         private System.Windows.Forms.Button btnGererAbs;
-        private System.Windows.Forms.GroupBox grbDeveloppeur;
-        private System.Windows.Forms.Button btnAnnulerResponsable;
-        private System.Windows.Forms.Button btnEnregResponsable;
-        private System.Windows.Forms.ComboBox cboProfil;
+        private System.Windows.Forms.GroupBox grbPersonnel;
+        private System.Windows.Forms.Button btnAnnulerPersonnel;
+        private System.Windows.Forms.Button btnEnregPersonnel;
+        private System.Windows.Forms.ComboBox cboService;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -274,6 +280,6 @@ namespace Gestionnnaire.vue
         private System.Windows.Forms.Button btnSupprimer;
         private System.Windows.Forms.Button btnModifier;
         private System.Windows.Forms.Button btnAjouter;
-        private System.Windows.Forms.DataGridView dgvResponsable;
+        private System.Windows.Forms.DataGridView dgvPersonnels;
     }
 }

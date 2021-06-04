@@ -33,7 +33,7 @@ namespace Gestionnnaire.vue
             this.btnSupprimer = new System.Windows.Forms.Button();
             this.btnModifAbsences = new System.Windows.Forms.Button();
             this.dgvAbsences = new System.Windows.Forms.DataGridView();
-            this.grbPwd = new System.Windows.Forms.GroupBox();
+            this.grbAbsence = new System.Windows.Forms.GroupBox();
             this.dtpFin = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.dtpDebut = new System.Windows.Forms.DateTimePicker();
@@ -43,7 +43,7 @@ namespace Gestionnnaire.vue
             this.btnEnregAbsence = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAbsences)).BeginInit();
-            this.grbPwd.SuspendLayout();
+            this.grbAbsence.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAjouterAbsences
@@ -55,6 +55,7 @@ namespace Gestionnnaire.vue
             this.btnAjouterAbsences.TabIndex = 13;
             this.btnAjouterAbsences.Text = "Ajouter";
             this.btnAjouterAbsences.UseVisualStyleBackColor = true;
+            this.btnAjouterAbsences.Click += new System.EventHandler(this.btnAjouterAbsences_Click);
             // 
             // btnSupprimer
             // 
@@ -65,6 +66,7 @@ namespace Gestionnnaire.vue
             this.btnSupprimer.TabIndex = 14;
             this.btnSupprimer.Text = "Supprimer";
             this.btnSupprimer.UseVisualStyleBackColor = true;
+            this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click_1);
             // 
             // btnModifAbsences
             // 
@@ -75,6 +77,7 @@ namespace Gestionnnaire.vue
             this.btnModifAbsences.TabIndex = 15;
             this.btnModifAbsences.Text = "Modifier";
             this.btnModifAbsences.UseVisualStyleBackColor = true;
+            this.btnModifAbsences.Click += new System.EventHandler(this.btnModifAbsences_Click);
             // 
             // dgvAbsences
             // 
@@ -86,24 +89,24 @@ namespace Gestionnnaire.vue
             this.dgvAbsences.Size = new System.Drawing.Size(494, 197);
             this.dgvAbsences.TabIndex = 12;
             // 
-            // grbPwd
+            // grbAbsence
             // 
-            this.grbPwd.Controls.Add(this.dtpFin);
-            this.grbPwd.Controls.Add(this.label8);
-            this.grbPwd.Controls.Add(this.dtpDebut);
-            this.grbPwd.Controls.Add(this.cboMotif);
-            this.grbPwd.Controls.Add(this.label7);
-            this.grbPwd.Controls.Add(this.btnAnnulAbs);
-            this.grbPwd.Controls.Add(this.btnEnregAbsence);
-            this.grbPwd.Controls.Add(this.label6);
-            this.grbPwd.Location = new System.Drawing.Point(561, 45);
-            this.grbPwd.Margin = new System.Windows.Forms.Padding(4);
-            this.grbPwd.Name = "grbPwd";
-            this.grbPwd.Padding = new System.Windows.Forms.Padding(4);
-            this.grbPwd.Size = new System.Drawing.Size(339, 197);
-            this.grbPwd.TabIndex = 11;
-            this.grbPwd.TabStop = false;
-            this.grbPwd.Text = "Ajouter une absence";
+            this.grbAbsence.Controls.Add(this.dtpFin);
+            this.grbAbsence.Controls.Add(this.label8);
+            this.grbAbsence.Controls.Add(this.dtpDebut);
+            this.grbAbsence.Controls.Add(this.cboMotif);
+            this.grbAbsence.Controls.Add(this.label7);
+            this.grbAbsence.Controls.Add(this.btnAnnulAbs);
+            this.grbAbsence.Controls.Add(this.btnEnregAbsence);
+            this.grbAbsence.Controls.Add(this.label6);
+            this.grbAbsence.Location = new System.Drawing.Point(561, 45);
+            this.grbAbsence.Margin = new System.Windows.Forms.Padding(4);
+            this.grbAbsence.Name = "grbAbsence";
+            this.grbAbsence.Padding = new System.Windows.Forms.Padding(4);
+            this.grbAbsence.Size = new System.Drawing.Size(339, 197);
+            this.grbAbsence.TabIndex = 11;
+            this.grbAbsence.TabStop = false;
+            this.grbAbsence.Text = "Ajouter une absence";
             // 
             // dtpFin
             // 
@@ -123,6 +126,7 @@ namespace Gestionnnaire.vue
             // 
             // dtpDebut
             // 
+            this.dtpDebut.Checked = false;
             this.dtpDebut.Location = new System.Drawing.Point(116, 23);
             this.dtpDebut.Name = "dtpDebut";
             this.dtpDebut.Size = new System.Drawing.Size(200, 22);
@@ -155,6 +159,7 @@ namespace Gestionnnaire.vue
             this.btnAnnulAbs.TabIndex = 4;
             this.btnAnnulAbs.Text = "annuler";
             this.btnAnnulAbs.UseVisualStyleBackColor = true;
+            this.btnAnnulAbs.Click += new System.EventHandler(this.btnAnnulAbs_Click);
             // 
             // btnEnregAbsence
             // 
@@ -165,6 +170,7 @@ namespace Gestionnnaire.vue
             this.btnEnregAbsence.TabIndex = 3;
             this.btnEnregAbsence.Text = "enregistrer";
             this.btnEnregAbsence.UseVisualStyleBackColor = true;
+            this.btnEnregAbsence.Click += new System.EventHandler(this.btnEnregAbsence_Click);
             // 
             // label6
             // 
@@ -185,12 +191,12 @@ namespace Gestionnnaire.vue
             this.Controls.Add(this.btnSupprimer);
             this.Controls.Add(this.btnModifAbsences);
             this.Controls.Add(this.dgvAbsences);
-            this.Controls.Add(this.grbPwd);
+            this.Controls.Add(this.grbAbsence);
             this.Name = "FrmAbsences";
             this.Text = "Absences";
             ((System.ComponentModel.ISupportInitialize)(this.dgvAbsences)).EndInit();
-            this.grbPwd.ResumeLayout(false);
-            this.grbPwd.PerformLayout();
+            this.grbAbsence.ResumeLayout(false);
+            this.grbAbsence.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -201,7 +207,7 @@ namespace Gestionnnaire.vue
         private System.Windows.Forms.Button btnSupprimer;
         private System.Windows.Forms.Button btnModifAbsences;
         private System.Windows.Forms.DataGridView dgvAbsences;
-        private System.Windows.Forms.GroupBox grbPwd;
+        private System.Windows.Forms.GroupBox grbAbsence;
         private System.Windows.Forms.DateTimePicker dtpFin;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker dtpDebut;

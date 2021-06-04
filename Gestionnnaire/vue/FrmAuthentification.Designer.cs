@@ -40,6 +40,7 @@ namespace Gestionnnaire.vue
             // 
             this.txtMdp.Location = new System.Drawing.Point(141, 82);
             this.txtMdp.Name = "txtMdp";
+            this.txtMdp.PasswordChar = '*';
             this.txtMdp.Size = new System.Drawing.Size(154, 22);
             this.txtMdp.TabIndex = 9;
             // 
@@ -70,18 +71,19 @@ namespace Gestionnnaire.vue
             // 
             // btnSeconnecter
             // 
-            this.btnSeconnecter.Location = new System.Drawing.Point(191, 122);
+            this.btnSeconnecter.Location = new System.Drawing.Point(159, 122);
             this.btnSeconnecter.Name = "btnSeconnecter";
-            this.btnSeconnecter.Size = new System.Drawing.Size(104, 23);
+            this.btnSeconnecter.Size = new System.Drawing.Size(136, 23);
             this.btnSeconnecter.TabIndex = 5;
             this.btnSeconnecter.Text = "Se connecter";
             this.btnSeconnecter.UseVisualStyleBackColor = true;
+            this.btnSeconnecter.Click += new System.EventHandler(this.btnSeconnecter_Click);
             // 
             // FrmAuthentification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(367, 180);
+            this.ClientSize = new System.Drawing.Size(438, 199);
             this.Controls.Add(this.txtMdp);
             this.Controls.Add(this.txtIdentifiant);
             this.Controls.Add(this.label2);

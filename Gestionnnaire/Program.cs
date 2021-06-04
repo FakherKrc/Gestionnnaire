@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Gestionnnaire.controleur;
+using Gestionnnaire.vue;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace Gestionnnaire
 {
@@ -16,7 +19,7 @@ namespace Gestionnnaire
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            new Controle();
         }
     }
 }
